@@ -4,6 +4,8 @@
 
 package vn.duongkobietcode.miniproject;
 
+import vn.duongkobietcode.miniproject.view.MainJFrame;
+
 /**
  *
  * @author ADMIN
@@ -11,6 +13,6 @@ package vn.duongkobietcode.miniproject;
 public class Miniproject {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new MainJFrame().setVisible(true);
     }
 }
