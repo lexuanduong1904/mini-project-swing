@@ -4,10 +4,27 @@
  */
 package vn.duongkobietcode.miniproject.domain;
 
+import java.io.Serializable;
+import java.time.Instant;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author ADMIN
  */
-public class Course {
-    
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Course implements Serializable {
+    private int id;
+    private String nameCourse;
+    private String description;
+    private Instant startDate;
+    private Instant endDate;
+    private boolean status;
 }
