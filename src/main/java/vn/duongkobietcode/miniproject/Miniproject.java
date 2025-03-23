@@ -4,6 +4,8 @@
 
 package vn.duongkobietcode.miniproject;
 
+import java.sql.SQLException;
+import vn.duongkobietcode.miniproject.config.DatabaseConfiguration;
 import vn.duongkobietcode.miniproject.view.MainJFrame;
 
 /**
@@ -12,7 +14,9 @@ import vn.duongkobietcode.miniproject.view.MainJFrame;
  */
 public class Miniproject {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         new MainJFrame().setVisible(true);
+        DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
+        databaseConfiguration.getConnection();
     }
 }
