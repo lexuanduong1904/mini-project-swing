@@ -54,16 +54,12 @@ public class ViewController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            switch (kind) {
-                case "Home":
-                    node = new HomeJPanel();
-                    break;
-                case "Student":
-                    node = new StudentsJPanel();
-                    break;
-                default:
-                    break;
-            }
+            node = switch (kind) {
+                case "Home" -> new HomeJPanel();
+                case "Student" -> new StudentsJPanel();
+                case "Course" -> new CoursesJPanel();
+                default -> new HomeJPanel();
+            };
             root.removeAll();
             root.setLayout(new BorderLayout());
             root.add(node);

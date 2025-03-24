@@ -10,10 +10,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class BeanCategory {
     private String kind;
     private JPanel jPanel;
     private JLabel jLabel;
+
+    public BeanCategory(String kind, JPanel jPanel, JLabel jLabel) {
+        this.kind = kind;
+        this.jPanel = jPanel;
+        this.jLabel = jLabel;
+    }
 }
