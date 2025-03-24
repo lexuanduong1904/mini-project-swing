@@ -28,4 +28,9 @@ public class Student implements Serializable {
     private String phoneNumber;
     private String address;
     private boolean status;
+
+    @Override
+    public String toString() {
+        return "Id: " + id + ", Name: " + name;
+    }
 }
