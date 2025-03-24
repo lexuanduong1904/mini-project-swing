@@ -45,13 +45,4 @@ public class StudentServiceImpl implements StudentService {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        try {
-            StudentService studentService = new StudentServiceImpl();
-            System.out.println(studentService.findAllStudents());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

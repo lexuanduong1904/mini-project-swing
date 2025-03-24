@@ -22,6 +22,11 @@ public class ClassTableModel {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 7 ? Boolean.class : String.class;
+            }
         };
         defaultTableModel.setColumnIdentifiers(columns);
         int columnCount = columns.length;
@@ -32,7 +37,14 @@ public class ClassTableModel {
                 Student student = students.get(i);
                 objects = new Object[columnCount];
                 objects[0] = student.getId();
-
+                objects[1] = i + 1;
+                objects[2] = student.getName();
+                objects[3] = student.getBirthDate();
+                objects[4] = student.isGender() == true ? "Nam" : "Nữ";
+                objects[5] = student.getPhoneNumber();
+                objects[6] = student.getAddress();
+                objects[7] = student.isStatus();
+                defaultTableModel.addRow(objects);
             }
         }
 
