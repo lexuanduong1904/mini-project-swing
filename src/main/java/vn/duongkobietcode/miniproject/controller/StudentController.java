@@ -36,7 +36,8 @@ public class StudentController {
     private String[] columns = { "Mã học viên", "STT", "Họ tên", "Ngày sinh", "Giới tính", "SĐT", "Địa chỉ",
             "Trạng thái" };
 
-    public StudentController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch) throws SQLException {
+    public StudentController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch)
+            throws SQLException {
         this.jPanelView = jPanelView;
         this.jButtonAdd = jButtonAdd;
         this.jTextFieldSearch = jTextFieldSearch;
