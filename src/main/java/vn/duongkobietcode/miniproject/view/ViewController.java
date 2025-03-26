@@ -58,6 +58,7 @@ public class ViewController {
                 case "Home" -> new HomeJPanel();
                 case "Student" -> new StudentsJPanel();
                 case "Course" -> new CoursesJPanel();
+                case "Analytics" -> new AnalyticsJPanel();
                 default -> new HomeJPanel();
             };
             root.removeAll();
@@ -77,8 +78,6 @@ public class ViewController {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            // TODO Auto-generated method stub
-            System.out.println("bla bla method needs overriding!");
         }
 
         @Override
