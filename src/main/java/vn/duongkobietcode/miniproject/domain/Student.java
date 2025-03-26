@@ -5,7 +5,7 @@
 package vn.duongkobietcode.miniproject.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Student implements Serializable {
     private int id;
     private String name;
-    private Instant birthDate;
+    private Date birthDate;
     private boolean gender;
     private String phoneNumber;
     private String address;

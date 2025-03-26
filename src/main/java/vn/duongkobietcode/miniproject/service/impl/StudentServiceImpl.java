@@ -30,7 +30,8 @@ public class StudentServiceImpl implements StudentService {
                 Student student = new Student();
                 student.setId(resultSet.getInt("id"));
                 student.setName(resultSet.getString("name"));
-                student.setBirthDate(resultSet.getTimestamp("birth_date").toInstant());
+                // student.setBirthDate(resultSet.getTimestamp("birth_date").toInstant());
+                student.setBirthDate(resultSet.getDate("birth_date"));
                 student.setGender(resultSet.getBoolean("gender"));
                 student.setPhoneNumber(resultSet.getString("phone_number"));
                 student.setAddress(resultSet.getString("address"));

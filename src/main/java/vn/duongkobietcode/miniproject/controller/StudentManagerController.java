@@ -1,6 +1,8 @@
 package vn.duongkobietcode.miniproject.controller;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,10 +19,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import vn.duongkobietcode.miniproject.domain.Student;
 import vn.duongkobietcode.miniproject.service.StudentService;
 import vn.duongkobietcode.miniproject.service.impl.StudentServiceImpl;
 import vn.duongkobietcode.miniproject.utilityModel.ClassTableModel;
+import vn.duongkobietcode.miniproject.view.StudentJFrame;
 
 public class StudentManagerController {
     private JPanel jPanelView;
@@ -87,6 +92,33 @@ public class StudentManagerController {
         jTable.getColumnModel().getColumn(1).setMinWidth(80);
         jTable.getColumnModel().getColumn(1).setMaxWidth(80);
         jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+
+        jTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                if (e.getClickCount() == 2 && jTable.getSelectedRow() != -1) {
+                    DefaultTableModel defaultTableModel = (DefaultTableModel) jTable.getModel();
+                    int selectedRowIndex = jTable.getSelectedRow();
+                    selectedRowIndex = jTable.convertRowIndexToModel(selectedRowIndex);
+                    System.out.println(selectedRowIndex);
+
+                    Student student = new Student();
+                    student.setId((int) jTable.getValueAt(selectedRowIndex, 0));
+                    student.setName((String) jTable.getValueAt(selectedRowIndex, 2));
+                    student.setBirthDate((Date) jTable.getValueAt(selectedRowIndex, 3));
+                    student.setGender(jTable.getValueAt(selectedRowIndex, 4).toString().equals("Nam") ? true : false);
+                    student.setPhoneNumber(jTable.getValueAt(selectedRowIndex, 5).toString());
+                    student.setAddress(jTable.getValueAt(selectedRowIndex, 6).toString());
+                    student.setStatus((boolean) jTable.getValueAt(selectedRowIndex, 7));
+                    StudentJFrame studentJFrame = new StudentJFrame(student);
+                    studentJFrame.setTitle("Thông tin học viên");
+                    studentJFrame.setResizable(false);
+                    studentJFrame.setLocationRelativeTo(null);
+                    studentJFrame.setVisible(true);
+                }
+            }
+        });
 
         jTable.getTableHeader().setFont(new FontUIResource("Arial", FontUIResource.BOLD, 14));
         jTable.getTableHeader().setPreferredSize(new DimensionUIResource(100, 50));

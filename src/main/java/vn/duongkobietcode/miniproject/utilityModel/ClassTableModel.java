@@ -4,6 +4,7 @@
  */
 package vn.duongkobietcode.miniproject.utilityModel;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +48,9 @@ public class ClassTableModel {
                 defaultTableModel.addRow(objects);
             }
         }
+        System.out.println(">>>> Check rows: " + rows + " " + defaultTableModel.getRowCount());
+        System.out.println("Số cột được truyền vào: " + columns.length);
+        System.out.println("Danh sách cột: " + Arrays.toString(columns));
 
         return defaultTableModel;
     }

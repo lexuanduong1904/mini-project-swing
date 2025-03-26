@@ -78,7 +78,7 @@ public class ViewController {
         @Override
         public void mouseReleased(MouseEvent e) {
             // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+            System.out.println("bla bla method needs overriding!");
         }
 
         @Override
