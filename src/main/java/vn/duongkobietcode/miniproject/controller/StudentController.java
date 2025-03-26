@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -92,13 +93,15 @@ public class StudentController {
                     student.setPhoneNumber(jTextFieldPhoneNumber.getText());
                     student.setAddress(jTextAreaAddress.getText());
                     student.setStatus(jCheckBoxStatus.isSelected());
-                    int lastId = studentService.createOrUpdateStudent(student);
-                    if (lastId > 0) {
-                        student.setId(lastId);
-                        jTextFieldStudentId.setText("#" + student.getId());
-                        jLabelMessage.setText("Dữ liệu mới đã được cập nhật!");
-                    } else {
-                        jLabelMessage.setText("Dữ liệu mới cập nhật thất bại!");
+                    if (showDialog()) {
+                        int lastId = studentService.createOrUpdateStudent(student);
+                        if (lastId > 0) {
+                            student.setId(lastId);
+                            jTextFieldStudentId.setText("#" + student.getId());
+                            jLabelMessage.setText("Dữ liệu mới đã được cập nhật!");
+                        } else {
+                            jLabelMessage.setText("Dữ liệu mới cập nhật thất bại!");
+                        }
                     }
                 }
             }
@@ -111,6 +114,12 @@ public class StudentController {
             public void mouseExited(MouseEvent e) {
             }
         });
+    }
+
+    private boolean showDialog() {
+        int dialogResult = JOptionPane.showConfirmDialog(null,
+                "Bạn muốn cập nhật dữ liệu hay không?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        return dialogResult == JOptionPane.YES_OPTION;
     }
 
     public java.sql.Date covertDateToDateSql(Date d) {
