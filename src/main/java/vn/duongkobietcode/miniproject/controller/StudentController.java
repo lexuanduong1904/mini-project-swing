@@ -30,7 +30,7 @@ public class StudentController {
     private JCheckBox jCheckBoxStatus;
     private JLabel jLabelMessage;
 
-    private Student student;
+    private Student student = null;
     private StudentService studentService;
     // public StudentController(JButton jButtonSubmit, JTextField
     // jTextFieldStudentId, JTextField jTextFieldStudentName) {
@@ -76,6 +76,7 @@ public class StudentController {
         this.jTextFieldPhoneNumber.setText(student.getPhoneNumber());
         this.jTextAreaAddress.setText(student.getAddress());
         this.jCheckBoxStatus.setSelected(student.isStatus());
+        this.student = student;
     }
 
     public void setEvent() {
