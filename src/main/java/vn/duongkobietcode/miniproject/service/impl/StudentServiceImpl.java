@@ -1,6 +1,7 @@
 package vn.duongkobietcode.miniproject.service.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,4 +47,31 @@ public class StudentServiceImpl implements StudentService {
         }
         return null;
     }
+
+    @Override
+    public int createOrUpdateStudent(Student student) {
+        try {
+            String sql = "INSERT INTO `students` (`id`, `name`, `birth_date`, `gender`, `phone_number`, `address`, `status`) VALUES(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name = VALUES(name), birth_date = VALUES(birth_date), gender = VALUES(gender), phone_number = VALUES(phone_number), address = VALUES(address), status = VALUES(status);";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, student.getId());
+            preparedStatement.setString(2, student.getName());
+            preparedStatement.setDate(3, new Date(student.getBirthDate().getTime()));
+            preparedStatement.setBoolean(4, student.isGender());
+            preparedStatement.setString(5, student.getPhoneNumber());
+            preparedStatement.setString(6, student.getAddress());
+            preparedStatement.setBoolean(7, student.isStatus());
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            int generatedKey = 0;
+            if (resultSet.next()) {
+                generatedKey = resultSet.getInt(1);
+            }
+            preparedStatement.close();
+            return generatedKey;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    };
 }

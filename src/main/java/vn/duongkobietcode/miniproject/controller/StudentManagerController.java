@@ -142,7 +142,9 @@ public class StudentManagerController {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                StudentJFrame studentJFrame = new StudentJFrame(new Student());
+                Student student = new Student();
+                student.setGender(true);
+                StudentJFrame studentJFrame = new StudentJFrame(student);
                 studentJFrame.setTitle("Thông tin học viên");
                 studentJFrame.setLocationRelativeTo(null);
                 studentJFrame.setResizable(false);

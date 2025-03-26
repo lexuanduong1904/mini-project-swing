@@ -6,4 +6,7 @@ import vn.duongkobietcode.miniproject.domain.Student;
 
 public interface StudentService {
     public List<Student> findAllStudents();
+
+    public int createOrUpdateStudent(Student student);
+
 }
