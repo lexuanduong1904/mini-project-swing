@@ -22,7 +22,7 @@ import vn.duongkobietcode.miniproject.service.StudentService;
 import vn.duongkobietcode.miniproject.service.impl.StudentServiceImpl;
 import vn.duongkobietcode.miniproject.utilityModel.ClassTableModel;
 
-public class StudentController {
+public class StudentManagerController {
     private JPanel jPanelView;
     private JButton jButtonAdd;
     private JTextField jTextFieldSearch;
@@ -36,7 +36,7 @@ public class StudentController {
     private String[] columns = { "Mã học viên", "STT", "Họ tên", "Ngày sinh", "Giới tính", "SĐT", "Địa chỉ",
             "Trạng thái" };
 
-    public StudentController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch)
+    public StudentManagerController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch)
             throws SQLException {
         this.jPanelView = jPanelView;
         this.jButtonAdd = jButtonAdd;

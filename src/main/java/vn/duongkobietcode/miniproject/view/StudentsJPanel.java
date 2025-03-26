@@ -6,7 +6,7 @@ package vn.duongkobietcode.miniproject.view;
 
 import java.sql.SQLException;
 
-import vn.duongkobietcode.miniproject.controller.StudentController;
+import vn.duongkobietcode.miniproject.controller.StudentManagerController;
 
 /**
  *
@@ -21,9 +21,10 @@ public class StudentsJPanel extends javax.swing.JPanel {
                 initComponents();
 
                 try {
-                        StudentController studentController = new StudentController(jPanelView, jButtonAdd,
+                        StudentManagerController studentManagerController = new StudentManagerController(jPanelView,
+                                        jButtonAdd,
                                         jTextFieldSearch);
-                        studentController.setDataTable();
+                        studentManagerController.setDataTable();
                 } catch (SQLException e) {
                         e.printStackTrace();
                 }
