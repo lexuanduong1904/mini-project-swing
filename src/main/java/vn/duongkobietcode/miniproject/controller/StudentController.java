@@ -1,10 +1,14 @@
 package vn.duongkobietcode.miniproject.controller;
 
+import java.awt.event.MouseAdapter;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import org.w3c.dom.events.MouseEvent;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -56,5 +60,22 @@ public class StudentController {
         this.jTextFieldPhoneNumber.setText(student.getPhoneNumber());
         this.jTextAreaAddress.setText(student.getAddress());
         this.jCheckBoxStatus.setSelected(student.isStatus());
+    }
+
+    public void setEvent() {
+        jButtonSubmit.addMouseListener(new MouseAdapter() {
+            // @Override
+            // public void mouseClicked(MouseEvent e) {
+            // }
+
+            // @Override
+            // public void mouseEntered(MouseEvent e) {
+            // }
+
+            // @Override
+            // public void mouseExited(MouseEvent e) {
+
+            // }
+        });
     }
 }

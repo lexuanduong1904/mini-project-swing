@@ -25,6 +25,7 @@ public class StudentsJPanel extends javax.swing.JPanel {
                                         jButtonAdd,
                                         jTextFieldSearch);
                         studentManagerController.setDataTable();
+                        studentManagerController.setEvent();
                 } catch (SQLException e) {
                         e.printStackTrace();
                 }

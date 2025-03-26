@@ -2,7 +2,6 @@ package vn.duongkobietcode.miniproject.controller;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -21,6 +20,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import vn.duongkobietcode.miniproject.domain.Student;
 import vn.duongkobietcode.miniproject.service.StudentService;
 import vn.duongkobietcode.miniproject.service.impl.StudentServiceImpl;
@@ -135,5 +135,27 @@ public class StudentManagerController {
         jPanelView.add(jScrollPane);
         jPanelView.validate();
         jPanelView.repaint();
+    }
+
+    public void setEvent() {
+        jButtonAdd.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                StudentJFrame studentJFrame = new StudentJFrame(new Student());
+                studentJFrame.setTitle("Thông tin học viên");
+                studentJFrame.setLocationRelativeTo(null);
+                studentJFrame.setResizable(false);
+                studentJFrame.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 }
