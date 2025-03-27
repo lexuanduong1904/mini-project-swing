@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.duongkobietcode.miniproject.bean.ClassBean;
+import vn.duongkobietcode.miniproject.bean.CourseBean;
 import vn.duongkobietcode.miniproject.config.DatabaseConfiguration;
 import vn.duongkobietcode.miniproject.service.AnalyticService;
 
@@ -36,6 +37,27 @@ public class AnalyticServiceImpl implements AnalyticService {
                 classBeans.add(classBean);
             }
             return classBeans;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    };
+
+    @Override
+    public List<CourseBean> getListByCourse() {
+        String sql = "SELECT `name_course`, `start_date`, `end_date` FROM courses where `status` = 1";
+        try {
+            List<CourseBean> courseBeans = new ArrayList<>();
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                CourseBean courseBean = new CourseBean();
+                courseBean.setCourseName(resultSet.getString("name_course"));
+                courseBean.setStartDate(resultSet.getDate("start_date"));
+                courseBean.setEndDate(resultSet.getDate("end_date"));
+                courseBeans.add(courseBean);
+            }
+            return courseBeans;
         } catch (Exception e) {
             e.printStackTrace();
         }

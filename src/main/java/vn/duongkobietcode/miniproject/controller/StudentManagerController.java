@@ -20,6 +20,8 @@ import javax.swing.table.TableRowSorter;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import vn.duongkobietcode.miniproject.domain.Student;
 import vn.duongkobietcode.miniproject.service.StudentService;
@@ -115,6 +117,17 @@ public class StudentManagerController {
                     studentJFrame.setTitle("Thông tin học viên");
                     studentJFrame.setResizable(false);
                     studentJFrame.setLocationRelativeTo(null);
+                    studentJFrame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            try {
+                                setDataTable();
+                            } catch (SQLException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+                        }
+                    });
                     studentJFrame.setVisible(true);
                 }
             }
@@ -148,6 +161,17 @@ public class StudentManagerController {
                 studentJFrame.setTitle("Thông tin học viên");
                 studentJFrame.setLocationRelativeTo(null);
                 studentJFrame.setResizable(false);
+                studentJFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        try {
+                            setDataTable();
+                        } catch (SQLException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                        }
+                    }
+                });
                 studentJFrame.setVisible(true);
             }
 
