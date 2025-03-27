@@ -9,4 +9,5 @@ public interface StudentService {
 
     public int createOrUpdateStudent(Student student);
 
+    public int deleteStudentById(int id);
 }

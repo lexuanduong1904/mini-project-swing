@@ -74,4 +74,24 @@ public class StudentServiceImpl implements StudentService {
         }
         return 0;
     };
+
+    @Override
+    public int deleteStudentById(int id) {
+        try {
+            String sql_1 = "DELETE FROM `students` WHERE id = ?";
+            String sql_2 = "DELETE FROM `classes` WHERE student_id = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql_2);
+            preparedStatement2.setString(1, id + "");
+            preparedStatement2.executeUpdate();
+            preparedStatement2.close();
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql_1);
+            preparedStatement1.setString(1, id + "");
+            int rowsAffect = preparedStatement1.executeUpdate();
+            preparedStatement1.close();
+            return rowsAffect;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

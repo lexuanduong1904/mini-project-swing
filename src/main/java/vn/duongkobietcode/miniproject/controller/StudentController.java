@@ -30,6 +30,7 @@ public class StudentController {
     private JTextArea jTextAreaAddress;
     private JCheckBox jCheckBoxStatus;
     private JLabel jLabelMessage;
+    private JButton jButtonDelete;
 
     private Student student = null;
     private StudentService studentService;
@@ -43,7 +44,7 @@ public class StudentController {
     public StudentController(JButton jButtonSubmit, JTextField jTextFieldStudentId, JTextField jTextFieldStudentName,
             JDateChooser jDateChooserBirthDate, JRadioButton jRadioMale, JRadioButton jRadioFemale,
             JTextField jTextFieldPhoneNumber, JTextArea jTextAreaAddress, JCheckBox jCheckBoxStatus,
-            JLabel jLabelMessage) {
+            JLabel jLabelMessage, JButton jButtonDelete) {
         this.jButtonSubmit = jButtonSubmit;
         this.jTextFieldStudentId = jTextFieldStudentId;
         this.jTextFieldStudentName = jTextFieldStudentName;
@@ -54,6 +55,7 @@ public class StudentController {
         this.jTextAreaAddress = jTextAreaAddress;
         this.jCheckBoxStatus = jCheckBoxStatus;
         this.jLabelMessage = jLabelMessage;
+        this.jButtonDelete = jButtonDelete;
 
         this.student = new Student();
         try {
@@ -114,11 +116,42 @@ public class StudentController {
             public void mouseExited(MouseEvent e) {
             }
         });
+
+        jButtonDelete.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // get id from jTextFieldStudentId (#xx)
+                int id = 0;
+                try {
+                    id = Integer.parseInt(jTextFieldStudentId.getText().substring(1));
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                if (id == 0) {
+                    jLabelMessage.setText("Mã học viên không hợp lệ!");
+                } else {
+                    if (showDeleteDialog()) {
+                        int rowsAffect = studentService.deleteStudentById(id);
+                        if (rowsAffect > 0) {
+                            jLabelMessage.setText("Xoá thành công!");
+                        } else {
+                            jLabelMessage.setText("Xoá thất bại!");
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private boolean showDialog() {
         int dialogResult = JOptionPane.showConfirmDialog(null,
                 "Bạn muốn cập nhật dữ liệu hay không?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        return dialogResult == JOptionPane.YES_OPTION;
+    }
+
+    private boolean showDeleteDialog() {
+        int dialogResult = JOptionPane.showConfirmDialog(null,
+                "Bạn muốn xoá hay không?", "Thông báo", JOptionPane.YES_NO_OPTION);
         return dialogResult == JOptionPane.YES_OPTION;
     }
 

@@ -49,10 +49,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="15" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabelMessage" min="-2" pref="500" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButtonDelete" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="jButtonSubmit" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -68,6 +70,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonSubmit" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jLabelMessage" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jButtonDelete" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -80,7 +83,7 @@
         <Component class="javax.swing.JButton" name="jButtonSubmit">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u d&#x1eef; li&#x1ec7;u"/>
           </Properties>
@@ -354,6 +357,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonDelete">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
