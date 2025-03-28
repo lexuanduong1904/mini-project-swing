@@ -4,6 +4,7 @@
 
 package vn.duongkobietcode.miniproject;
 
+import vn.duongkobietcode.miniproject.view.LoginJDialog;
 import vn.duongkobietcode.miniproject.view.MainJFrame;
 
 /**
@@ -13,6 +14,10 @@ import vn.duongkobietcode.miniproject.view.MainJFrame;
 public class Miniproject {
 
     public static void main(String[] args) throws Exception {
-        new MainJFrame().setVisible(true);
+        LoginJDialog dialog = new LoginJDialog(null, true);
+        dialog.setTitle("Đăng nhập");
+        dialog.setResizable(false);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
     }
 }
