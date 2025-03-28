@@ -17,11 +17,27 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import vn.duongkobietcode.miniproject.domain.Student;
 import vn.duongkobietcode.miniproject.service.StudentService;
@@ -33,6 +49,7 @@ public class StudentManagerController {
     private JPanel jPanelView;
     private JButton jButtonAdd;
     private JTextField jTextFieldSearch;
+    private JButton jButtonExport;
 
     private StudentService studentService = null;
 
@@ -43,11 +60,13 @@ public class StudentManagerController {
     private String[] columns = { "Mã học viên", "STT", "Họ tên", "Ngày sinh", "Giới tính", "SĐT", "Địa chỉ",
             "Trạng thái" };
 
-    public StudentManagerController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch)
+    public StudentManagerController(JPanel jPanelView, JButton jButtonAdd, JTextField jTextFieldSearch,
+            JButton jButtonExport)
             throws SQLException {
         this.jPanelView = jPanelView;
         this.jButtonAdd = jButtonAdd;
         this.jTextFieldSearch = jTextFieldSearch;
+        this.jButtonExport = jButtonExport;
         this.studentService = new StudentServiceImpl();
     }
 
@@ -181,6 +200,112 @@ public class StudentManagerController {
 
             @Override
             public void mouseExited(MouseEvent e) {
+            }
+        });
+        jButtonExport.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    XSSFWorkbook workbook = new XSSFWorkbook();
+                    XSSFSheet spreadsheet = workbook.createSheet("Học viên");
+
+                    XSSFRow row;
+                    Cell cell;
+
+                    // Tạo CellStyle cho tiêu đề
+                    CellStyle headerStyle = workbook.createCellStyle();
+                    Font headerFont = workbook.createFont();
+                    headerFont.setBold(true);
+                    headerFont.setFontHeightInPoints((short) 14);
+                    headerStyle.setFont(headerFont);
+                    headerStyle.setAlignment(HorizontalAlignment.CENTER);
+                    headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+                    headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+                    headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    headerStyle.setBorderTop(BorderStyle.THIN);
+                    headerStyle.setBorderBottom(BorderStyle.THIN);
+                    headerStyle.setBorderLeft(BorderStyle.THIN);
+                    headerStyle.setBorderRight(BorderStyle.THIN);
+
+                    // Tạo CellStyle cho dữ liệu
+                    CellStyle dataStyle = workbook.createCellStyle();
+                    dataStyle.setBorderTop(BorderStyle.THIN);
+                    dataStyle.setBorderBottom(BorderStyle.THIN);
+                    dataStyle.setBorderLeft(BorderStyle.THIN);
+                    dataStyle.setBorderRight(BorderStyle.THIN);
+
+                    // Tiêu đề chính
+                    row = spreadsheet.createRow(0);
+                    cell = row.createCell(0);
+                    cell.setCellValue("DANH SÁCH HỌC VIÊN");
+                    CellStyle titleStyle = workbook.createCellStyle();
+                    Font titleFont = workbook.createFont();
+                    titleFont.setBold(true);
+                    titleFont.setFontHeightInPoints((short) 16);
+                    titleStyle.setFont(titleFont);
+                    titleStyle.setAlignment(HorizontalAlignment.CENTER);
+                    row.setHeight((short) 500);
+                    cell.setCellStyle(titleStyle);
+
+                    // Merge các cột lại thành 1 để hiển thị tiêu đề chính
+                    spreadsheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(0, 0, 0, 5));
+
+                    // Tiêu đề các cột
+                    row = spreadsheet.createRow(1);
+                    String[] headers = { "STT", "Họ và tên", "Ngày sinh", "Giới tính", "Số điện thoại", "Địa chỉ" };
+                    for (int i = 0; i < headers.length; i++) {
+                        cell = row.createCell(i);
+                        cell.setCellValue(headers[i]);
+                        cell.setCellStyle(headerStyle);
+                    }
+
+                    // Giả lập dữ liệu
+                    List<Student> listItem = studentService.findAllStudents();
+
+                    // Thêm dữ liệu
+                    for (int i = 0; i < listItem.size(); i++) {
+                        Student student = listItem.get(i);
+                        row = spreadsheet.createRow(2 + i);
+
+                        cell = row.createCell(0);
+                        cell.setCellValue(i + 1);
+                        cell.setCellStyle(dataStyle);
+
+                        cell = row.createCell(1);
+                        cell.setCellValue(student.getName());
+                        cell.setCellStyle(dataStyle);
+
+                        cell = row.createCell(2);
+                        cell.setCellValue(student.getBirthDate().toString());
+                        cell.setCellStyle(dataStyle);
+
+                        cell = row.createCell(3);
+                        cell.setCellValue(student.isGender() ? "Nam" : "Nữ");
+                        cell.setCellStyle(dataStyle);
+
+                        cell = row.createCell(4);
+                        cell.setCellValue(student.getPhoneNumber());
+                        cell.setCellStyle(dataStyle);
+
+                        cell = row.createCell(5);
+                        cell.setCellValue(student.getAddress());
+                        cell.setCellStyle(dataStyle);
+                    }
+
+                    // Tự động điều chỉnh độ rộng các cột
+                    for (int i = 0; i < headers.length; i++) {
+                        spreadsheet.autoSizeColumn(i);
+                    }
+
+                    // Xuất file ra
+                    FileOutputStream out = new FileOutputStream(new File("D:/hv.xlsx"));
+                    workbook.write(out);
+                    System.out.println("Xuất file thành công!");
+                    workbook.close();
+                } catch (Exception e1) {
+                    System.out.println(e1.getMessage());
+                }
             }
         });
     }

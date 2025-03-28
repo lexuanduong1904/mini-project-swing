@@ -23,7 +23,7 @@ public class StudentsJPanel extends javax.swing.JPanel {
                 try {
                         StudentManagerController studentManagerController = new StudentManagerController(jPanelView,
                                         jButtonAdd,
-                                        jTextFieldSearch);
+                                        jTextFieldSearch, jButtonExport);
                         studentManagerController.setDataTable();
                         studentManagerController.setEvent();
                 } catch (SQLException e) {
@@ -38,6 +38,7 @@ public class StudentsJPanel extends javax.swing.JPanel {
          */
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -45,10 +46,11 @@ public class StudentsJPanel extends javax.swing.JPanel {
                 jButtonAdd = new javax.swing.JButton();
                 jTextFieldSearch = new javax.swing.JTextField();
                 jPanelView = new javax.swing.JPanel();
+                jButtonExport = new javax.swing.JButton();
 
                 jPanelRoot.setBackground(new java.awt.Color(240, 240, 240));
 
-                jButtonAdd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                jButtonAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
                 jButtonAdd.setText("+ Thêm mới");
                 jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +67,15 @@ public class StudentsJPanel extends javax.swing.JPanel {
                                                 .addGap(0, 0, Short.MAX_VALUE));
                 jPanelViewLayout.setVerticalGroup(
                                 jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 448, Short.MAX_VALUE));
+                                                .addGap(0, 447, Short.MAX_VALUE));
+
+                jButtonExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jButtonExport.setText("Xuất báo cáo");
+                jButtonExport.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jButtonExportActionPerformed(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
                 jPanelRoot.setLayout(jPanelRootLayout);
@@ -73,9 +83,8 @@ public class StudentsJPanel extends javax.swing.JPanel {
                                 jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanelRootLayout.createSequentialGroup()
                                                                 .addContainerGap()
-                                                                .addGroup(jPanelRootLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(jPanelRootLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addComponent(jPanelView,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -88,25 +97,38 @@ public class StudentsJPanel extends javax.swing.JPanel {
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                 .addPreferredGap(
                                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                411,
+                                                                                                                276,
                                                                                                                 Short.MAX_VALUE)
+                                                                                                .addComponent(jButtonExport)
+                                                                                                .addGap(18, 18, 18)
                                                                                                 .addComponent(jButtonAdd)))
                                                                 .addContainerGap()));
                 jPanelRootLayout.setVerticalGroup(
                                 jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanelRootLayout.createSequentialGroup()
-                                                                .addGap(20, 20, 20)
-                                                                .addGroup(
-                                                                                jPanelRootLayout.createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                .addComponent(jButtonAdd,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                30,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(jTextFieldSearch,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                30,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(jPanelRootLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(jPanelRootLayout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGap(21, 21, 21)
+                                                                                                .addGroup(jPanelRootLayout
+                                                                                                                .createParallelGroup(
+                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                                .addComponent(jButtonAdd,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                30,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(jTextFieldSearch,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                30,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                jPanelRootLayout.createSequentialGroup()
+                                                                                                                .addContainerGap()
+                                                                                                                .addComponent(jButtonExport,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                30,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(jPanelView,
@@ -127,12 +149,17 @@ public class StudentsJPanel extends javax.swing.JPanel {
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         }// </editor-fold>//GEN-END:initComponents
 
+        private void jButtonExportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonExportActionPerformed
+                // TODO add your handling code here:
+        }// GEN-LAST:event_jButtonExportActionPerformed
+
         private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAddActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_jButtonAddActionPerformed
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton jButtonAdd;
+        private javax.swing.JButton jButtonExport;
         private javax.swing.JPanel jPanelRoot;
         private javax.swing.JPanel jPanelView;
         private javax.swing.JTextField jTextFieldSearch;

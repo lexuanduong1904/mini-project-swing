@@ -12,7 +12,7 @@ import vn.duongkobietcode.miniproject.config.DatabaseConfiguration;
 import vn.duongkobietcode.miniproject.domain.Student;
 import vn.duongkobietcode.miniproject.service.StudentService;
 
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService, AutoCloseable {
     private Connection connection;
 
     public StudentServiceImpl() throws SQLException {
@@ -93,5 +93,16 @@ public class StudentServiceImpl implements StudentService {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

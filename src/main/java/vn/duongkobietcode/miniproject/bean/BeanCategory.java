@@ -3,7 +3,6 @@ package vn.duongkobietcode.miniproject.bean;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

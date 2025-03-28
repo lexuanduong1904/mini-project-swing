@@ -11,7 +11,7 @@ import vn.duongkobietcode.miniproject.bean.CourseBean;
 import vn.duongkobietcode.miniproject.config.DatabaseConfiguration;
 import vn.duongkobietcode.miniproject.service.AnalyticService;
 
-public class AnalyticServiceImpl implements AnalyticService {
+public class AnalyticServiceImpl implements AnalyticService, AutoCloseable {
     private Connection connection;
 
     public AnalyticServiceImpl() {
@@ -63,4 +63,15 @@ public class AnalyticServiceImpl implements AnalyticService {
         }
         return null;
     };
+
+    @Override
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

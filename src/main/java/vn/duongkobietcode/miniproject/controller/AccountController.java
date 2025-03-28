@@ -8,7 +8,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 
-import lombok.AllArgsConstructor;
 import vn.duongkobietcode.miniproject.domain.Account;
 import vn.duongkobietcode.miniproject.service.AccountService;
 import vn.duongkobietcode.miniproject.service.impl.AccountServiceImpl;
