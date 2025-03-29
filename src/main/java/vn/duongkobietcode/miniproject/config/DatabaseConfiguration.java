@@ -8,13 +8,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import lombok.Getter;
-
 /**
  *
  * @author ADMIN
  */
-@Getter
+
 public class DatabaseConfiguration {
     // private ConfigManager configManager;
 
@@ -40,4 +38,29 @@ public class DatabaseConfiguration {
         System.out.println(">>>> Database connected!");
         return conn;
     }
+
+    public String getDB_URL() {
+        return DB_URL;
+    }
+
+    public void setDB_URL(String dB_URL) {
+        DB_URL = dB_URL;
+    }
+
+    public String getDB_USERNAME() {
+        return DB_USERNAME;
+    }
+
+    public void setDB_USERNAME(String dB_USERNAME) {
+        DB_USERNAME = dB_USERNAME;
+    }
+
+    public String getDB_PASSWORD() {
+        return DB_PASSWORD;
+    }
+
+    public void setDB_PASSWORD(String dB_PASSWORD) {
+        DB_PASSWORD = dB_PASSWORD;
+    }
+
 }

@@ -3,13 +3,6 @@ package vn.duongkobietcode.miniproject.bean;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class BeanCategory {
     private String kind;
     private JPanel jPanel;
@@ -20,4 +13,32 @@ public class BeanCategory {
         this.jPanel = jPanel;
         this.jLabel = jLabel;
     }
+
+    public BeanCategory() {
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public JPanel getJPanel() {
+        return jPanel;
+    }
+
+    public void setJPanel(JPanel jPanel) {
+        this.jPanel = jPanel;
+    }
+
+    public JLabel getJLabel() {
+        return jLabel;
+    }
+
+    public void setJLabel(JLabel jLabel) {
+        this.jLabel = jLabel;
+    }
+
 }
